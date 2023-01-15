@@ -35,19 +35,17 @@ def knn(X_images,Y_labels,testImage,k=5):
 
 ds = pd.read_csv('train.csv')
 data = ds.values
-# X = (data[:, 1:])
 X_train = data[:,1:]
 Y_train = data[:, 0]
-# drawImage(X_train[29])
-# print (X_train[0])
 
 
 import cv2
-test_image = cv2.imread('number.png', cv2.IMREAD_GRAYSCALE)
+test_image = cv2.imread('edited2.png', cv2.IMREAD_GRAYSCALE)
 # # drawImage(test_image)
 test_image_resized = cv2.resize(test_image, (28, 28), interpolation=cv2.INTER_LINEAR)
 test_image_resized = cv2.bitwise_not(test_image_resized)
 test_image_resized = test_image_resized.flatten()
+
 # for idx, pix in enumerate(test_image_resized):
 #     if pix < 130:
 #         test_image_resized[idx] = 0
@@ -55,8 +53,5 @@ test_image_resized = test_image_resized.flatten()
         # test_image_resized[idx] = pix
 
 # drawImage(test_image_resized)
-# print (test_image_resized)
 drawImage(test_image_resized)
-# plt.show()
-# print (test_image_resized)
 print (int(knn(X_train, Y_train, test_image_resized)))
